@@ -1,10 +1,12 @@
+import { router } from 'expo-router';
+
 import {
-    Image,
-    Pressable,
-    ScrollView,
-    StyleSheet,
-    Text,
-    View,
+  Image,
+  Pressable,
+  ScrollView,
+  StyleSheet,
+  Text,
+  View,
 } from 'react-native';
 
 const categories = [
@@ -83,10 +85,8 @@ export default function Home() {
       contentContainerStyle={styles.content}
       showsVerticalScrollIndicator={false}
     >
-
       {/* Cabeçalho */}
       <View style={styles.header}>
-
         <Image
           source={require('../../assets/images/tabIcons/Perfil.png')}
           style={styles.avatar}
@@ -102,10 +102,13 @@ export default function Home() {
           </Text>
         </View>
 
-        <Pressable style={styles.addButton}>
+        {/* Abre a tela Agendar */}
+        <Pressable
+          style={styles.addButton}
+          onPress={() => router.push('/schedule')}
+        >
           <Text style={styles.addButtonText}>+</Text>
         </Pressable>
-
       </View>
 
       {/* Categorias */}
@@ -136,9 +139,8 @@ export default function Home() {
         ))}
       </ScrollView>
 
-      {/* Partidas agendadas */}
+      {/* Partidas */}
       <View style={styles.matchesHeader}>
-
         <Text style={styles.titleMatches}>
           Partidas agendadas
         </Text>
@@ -146,7 +148,6 @@ export default function Home() {
         <Text style={styles.matchesCount}>
           Total {matches.length}
         </Text>
-
       </View>
 
       {/* Lista de partidas */}
@@ -154,15 +155,14 @@ export default function Home() {
         <Pressable
           key={match.id}
           style={styles.match}
+          onPress={() => router.push('/details')}
         >
-
           <Image
             source={match.image}
             style={styles.gameImage}
           />
 
           <View style={styles.matchInfo}>
-
             <Text style={styles.matchName}>
               {match.name}
             </Text>
@@ -170,11 +170,9 @@ export default function Home() {
             <Text style={styles.matchDate}>
               📅 {match.date}
             </Text>
-
           </View>
 
           <View style={styles.matchStatus}>
-
             <Text style={styles.matchCategory}>
               {match.category}
             </Text>
@@ -188,12 +186,9 @@ export default function Home() {
             >
               ● {match.status}
             </Text>
-
           </View>
-
         </Pressable>
       ))}
-
     </ScrollView>
   );
 }
