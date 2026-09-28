@@ -1,4 +1,5 @@
 import { FontAwesome5 } from '@expo/vector-icons';
+import { router } from 'expo-router';
 import {
   Image,
   Pressable,
@@ -25,7 +26,10 @@ export default function Login() {
           favoritos com seus amigos
         </Text>
 
-        <Pressable style={styles.button}>
+        <Pressable
+         style={styles.button}
+         onPress={() => router.push('/home')}
+>
           <View style={styles.discordArea}>
             <FontAwesome5
               name="discord"
